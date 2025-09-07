@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+TPL_DIR="$HOME/misc/prompt/templates"
+temp_file=""
+
+cleanup() { [ -n "$temp_file" ] && rm -f "$temp_file"; }
+trap cleanup EXIT INT TERM
+
+# fd: faster, cleaner syntax, better defaults
+sel="$(fd -t f -d 1 . "$TPL_DIR" -x basename | fzf --preview "cat '$TPL_DIR/{}'")" || exit 1
+
+temp_file="$(mktemp -t "${sel##*/}.XXXXXX")"
+cp -- "$TPL_DIR/$sel" "$temp_file"
+nvim -c 'autocmd VimLeavePre * silent update' "$temp_file"
+wl-copy < "$temp_file" || { echo >&2 "Clipboard failed"; exit 1; }

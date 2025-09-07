@@ -1,0 +1,11 @@
+tt.*
+cachyos-repo*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+log/
+data
+__pycache__/
