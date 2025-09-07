@@ -7,5 +7,5 @@ cd "$BOOK_DIR" || exit 1
 selection=$(fd -t f -e pdf -e epub | fuzzel -d --prompt 'Open Book: ' --width 80)
 
 if [ -n "$selection" ]; then
-  zathura "$selection" &
+  app2unit zathura "$selection" &
 fi

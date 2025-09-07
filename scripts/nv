@@ -1,0 +1,27 @@
+#!/usr/bin/env fish
+
+if not set -q NVIM_LISTEN_ADDRESS
+    echo "NVIM_LISTEN_ADDRESS not set" >&2
+    command nvim $argv
+    exit
+end
+
+if not test -S "$NVIM_LISTEN_ADDRESS"
+    if test (count $argv) -eq 1; and test -d "$argv[1]"
+        set abs (realpath -- $argv[1])
+        xx "$abs"
+    else
+        command app2unit /usr/share/applications/neovide.desktop -- --listen "$NVIM_LISTEN_ADDRESS" $argv
+    end
+    exit
+end
+
+for f in $argv
+    set abs (realpath -- $f)
+    if test -d "$abs"
+        xx "$abs"
+    else
+        nvim --server $NVIM_LISTEN_ADDRESS --remote $abs
+        hyprctl dispatch focuswindow class:neovide
+    end
+end

@@ -1,0 +1,58 @@
+#!/bin/sh
+ext=""
+dir="."
+
+while [ $# -gt 0 ]; do
+  case $1 in
+  -e)
+    shift
+    [ $# -gt 0 ] || {
+      echo "xx: -e requires argument" >&2
+      exit 1
+    }
+    ext=$1
+    ;;
+  --)
+    shift
+    break
+    ;;
+  -*)
+    echo "xx: unknown option $1" >&2
+    exit 1
+    ;;
+  *) # first non-option: directory or file
+    dir=$1
+    shift
+    break
+    ;;
+  esac
+  shift
+done
+
+# If the target is a file, open it directly.
+if [ -f "$dir" ]; then
+  nv "$dir"
+  exit 0
+fi
+
+# Build args for fd safely
+set --
+[ -n "$ext" ] && set -- "$@" --extension "$ext"
+
+file=$(
+  fd . "$dir" --type f "$@" |
+    awk -F/ '{print $NF "\t" $0}' |
+    sk \
+      --delimiter '\t' \
+      --with-nth=2 \
+      --nth=1,2 \
+      --tiebreak=begin,length \
+      --preview 'bat --color=always --style=numbers {2}' |
+    cut -f2
+)
+[ -n "$file" ] && {
+  nv "$file"
+  exit 0
+}
+echo "xx: no file selected/found" >&2
+exit 1

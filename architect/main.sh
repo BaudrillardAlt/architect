@@ -16,15 +16,15 @@ main() {
     'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-v4-mirrorlist-22-1-any.pkg.tar.zst' \
     'https://mirror.cachyos.org/repo/x86_64/cachyos/pacman-7.0.0.r7.g1f38429-1-x86_64.pkg.tar.zst'
 
-  sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config-files/etc/ /etc/
+  sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config/etc/ /etc/
   sudo pacman -Scc --noconfirm
   sudo pacman -Syyu --noconfirm
 
   sudo pacman -S paru-bin chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
   chsh -s /usr/bin/fish
 
-  sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config-files/etc/ /etc/
-  chezmoi init --apply --ssh git@github.com:ifelse023/dotfiles.git
+  sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config/etc/ /etc/
+  chezmoi init --apply --ssh git@github.com:BaudrillardAlt/dotfiles.git
 
   python ~/architect/architect/install_packages.py
 
@@ -35,10 +35,12 @@ main() {
 
   sudo usermod -aG video,audio,network,git,wheel,input wasd
   python ~/architect/architect/service_manager.py --enable
-  sudo cp ./config-files/limine.conf /boot
+  sudo cp ./config/limine.conf /boot
 
   sudo udevadm control --reload
   sudo udevadm trigger
+
+  bat cache --build
 
   sudo pacman -Sc --noconfirm
   paru -Sc --noconfirm

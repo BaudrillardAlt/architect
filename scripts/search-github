@@ -1,0 +1,26 @@
+#!/bin/sh
+
+mode="code"
+lang=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+  -r)
+    mode="repositories"
+    shift
+    ;;
+  -l)
+    lang="+language:$(printf '%s' "$2")"
+    shift 2
+    ;;
+  *)
+    query="$query $1"
+    shift
+    ;;
+  esac
+done
+
+url="https://github.com/search?q=$(printf '%s' "$query" | sed 's/ /+/g')$lang&type=$mode"
+firefox-nightly --new-tab "$url"
+# nirius focus -a firefox
+nirius focus -a firefox-nightly

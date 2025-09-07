@@ -7,10 +7,12 @@ temp_file=""
 cleanup() { [ -n "$temp_file" ] && rm -f "$temp_file"; }
 trap cleanup EXIT INT TERM
 
-# fd: faster, cleaner syntax, better defaults
-sel="$(fd -t f -d 1 . "$TPL_DIR" -x basename | fzf --preview "cat '$TPL_DIR/{}'")" || exit 1
+sel="$(fd -t f -d 1 . "$TPL_DIR" -x basename | sk --preview "bat '$TPL_DIR/{}'")" || exit 1
 
-temp_file="$(mktemp -t "${sel##*/}.XXXXXX")"
+temp_file="$(mktemp -t "${sel##*/}.XXXXXX.txt")"
 cp -- "$TPL_DIR/$sel" "$temp_file"
-nvim -c 'autocmd VimLeavePre * silent update' "$temp_file"
-wl-copy < "$temp_file" || { echo >&2 "Clipboard failed"; exit 1; }
+nv -c 'autocmd VimLeavePre * silent update' "$temp_file"
+wl-copy --trim-newline <"$temp_file" && exit 0 || {
+  echo >&2 "Clipboard failed"
+  exit 1
+}
