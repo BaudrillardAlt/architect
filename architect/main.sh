@@ -2,10 +2,7 @@
 set -e
 main() {
 
-  if pacman -Qq linux-firmware >/dev/null 2>&1; then
-    sudo pacman -Rns linux-firmware --noconfirm
-  fi
-  sudo pacman -S linux-firmware-intel linux-firmware-whence python --noconfirm --needed
+  sudo pacman -S python rsync --noconfirm --needed
 
   sudo pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
   sudo pacman-key --lsign-key F3B607488DB35A47
@@ -20,8 +17,9 @@ main() {
   sudo pacman -Scc --noconfirm
   sudo pacman -Syyu --noconfirm
 
-  sudo pacman -S paru-bin chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
+  sudo pacman -S paru-bin rustup fish-git chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
   chsh -s /usr/bin/fish
+  rustup default nightly
 
   sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config/etc/ /etc/
   chezmoi init --apply --ssh git@github.com:BaudrillardAlt/dotfiles.git
@@ -41,11 +39,15 @@ main() {
   sudo udevadm trigger
 
   bat cache --build
-
+  if pacman -Qq linux-firmware >/dev/null 2>&1; then
+    sudo pacman -Rns linux-zen linux-firmware --noconfirm
+  fi
+  sudo pacman -S linux-firmware-intel linux-firmware-whence python rsync --noconfirm --needed
   sudo pacman -Sc --noconfirm
   paru -Sc --noconfirm
   sudo journalctl --vacuum-size=1M
-  sudo pacman -R $(pacman -Qtdq)
+  orphans=$(pacman -Qtdq)
+  [[ -n "$orphans" ]] && sudo pacman -Rns $orphans
 }
 
 main

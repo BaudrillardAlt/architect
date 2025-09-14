@@ -7,6 +7,10 @@ if not set -q NVIM_LISTEN_ADDRESS
 end
 
 if not test -S "$NVIM_LISTEN_ADDRESS"
+    if pgrep -x neovide >/dev/null
+        nirius focus -a neovide
+        exit
+    end
     if test (count $argv) -eq 1; and test -d "$argv[1]"
         set abs (realpath -- $argv[1])
         xx "$abs"
@@ -22,6 +26,6 @@ for f in $argv
         xx "$abs"
     else
         nvim --server $NVIM_LISTEN_ADDRESS --remote $abs
-        hyprctl dispatch focuswindow class:neovide
+        nirius focus -a neovide
     end
 end

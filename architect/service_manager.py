@@ -39,7 +39,12 @@ SERVICES = [
     Service(name="keyd", type=ServiceType.SYSTEM, pkg="keyd"),
     Service(name="scx", type=ServiceType.SYSTEM, pkg="scx-scheds-git"),
     Service(name="psd", type=ServiceType.USER, pkg="profile-sync-daemon"),
+    Service(name="foot-server.socket", type=ServiceType.USER, pkg="foot"),
+    Service(name="gnome-keyring-daemon", type=ServiceType.USER, pkg="gnome-keyring"),
+    Service(name="mako", type=ServiceType.USER, pkg="mako"),
+    Service(name="hyprpolkitagent", type=ServiceType.USER, pkg="hyprpolkitagent"),  # or polkit-kde-agent if preferred
 ]
+
 
 
 def print_msg(message: str, status: str = "", error: bool = False) -> None:
