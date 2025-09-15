@@ -14,11 +14,10 @@ if ! mountpoint -q "$USB_MOUNT"; then
   fi
 fi
 
-# Find profile - handle both directories and symlinks
-profile=$(find "$FIREFOX_DIR" -maxdepth 1 \( -type d -o -type l \) -name "*.hey" | head -n 1 || true)
-
-if [ -z "$profile" ]; then
-  echo "No .hey profile folder found in $FIREFOX_DIR"
+# Use the specific Firefox profile folder
+profile="$FIREFOX_DIR/jl1ucoi1.default-nightly"
+if [ ! -e "$profile" ]; then
+  echo "Profile jl1ucoi1.default-nightly not found in $FIREFOX_DIR"
   echo "Available profiles:"
   ls -la "$FIREFOX_DIR"
   exit 1
@@ -31,7 +30,6 @@ echo "Found profile: $basename"
 if [ -L "$profile" ]; then
   target=$(readlink "$profile")
   echo "Profile is a symlink pointing to: $target"
-  # Use the symlink target for rsync to get the actual data
   profile="$target"
 fi
 

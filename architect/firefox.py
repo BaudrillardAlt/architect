@@ -7,12 +7,14 @@ import sys
 import subprocess
 
 
-def find_hey_profile(mount_path):
-    candidates = [d for d in os.listdir(mount_path) if d.endswith(".hey") and os.path.isdir(os.path.join(mount_path, d))]
+def find_profile(mount_path):
+    dirs = [d for d in os.listdir(mount_path) if os.path.isdir(os.path.join(mount_path, d))]
+    candidates = [d for d in dirs if re.match(r"^[a-z0-9]+\.(default(-release|-nightly)?|hey)$", d)]
     if not candidates:
-        raise FileNotFoundError("no *.hey profile folder found on USB")
+        raise FileNotFoundError("no matching Firefox profile folder found on USB")
+    candidates.sort(key=lambda d: (not d.endswith(".default-nightly"), d))
     if len(candidates) > 1:
-        print(f"Warning: multiple .hey profiles found, using {candidates[0]}")
+        print(f"Warning: multiple profiles found, using {candidates[0]}")
     return candidates[0]
 
 
@@ -22,7 +24,7 @@ def main():
     print(f"Starting operations on {firefox_dir}")
     os.makedirs(firefox_dir, exist_ok=True)
     try:
-        profile_name = find_hey_profile(usb_mount)
+        profile_name = find_profile(usb_mount)
     except FileNotFoundError as e:
         print(f"Error: {e}")
         sys.exit(1)
@@ -46,7 +48,7 @@ def main():
 
 
 def is_profile_folder(folder_name):
-    return bool(re.match(r"^[a-z0-9]+\.(default(-release)?|hey)$", folder_name))
+    return bool(re.match(r"^[a-z0-9]+\.(default(-release|-nightly)?|hey)$", folder_name))
 
 
 def delete_profile_folders(firefox_dir):
