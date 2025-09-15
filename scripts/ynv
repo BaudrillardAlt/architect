@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+tmp="$(mktemp -t "yazi-chooser.XXXXX")"
+trap 'rm -f "$tmp"' EXIT
+
+yazi "$@" --chooser-file="$tmp"
+
+if [[ -s "$tmp" ]]; then
+  while IFS= read -r file; do
+    nv "$file"
+  done <"$tmp"
+fi

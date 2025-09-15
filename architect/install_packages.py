@@ -4,6 +4,7 @@ import subprocess
 import os
 import sys
 
+
 def load_package_data(config_path):
     try:
         with open(config_path, "r") as f:
@@ -12,7 +13,7 @@ def load_package_data(config_path):
         sys.exit(f"Error: Configuration file '{config_path}' not found.")
     except json.JSONDecodeError:
         sys.exit(f"Error: Configuration file '{config_path}' contains invalid JSON.")
-    
+
     required_keys = ["packages", "aur-packages"]
     missing_keys = [key for key in required_keys if key not in package_data]
     if missing_keys:
@@ -20,6 +21,7 @@ def load_package_data(config_path):
             f"Error: Configuration missing required keys: {', '.join(missing_keys)}"
         )
     return package_data
+
 
 def run_command(cmd, description):
     print(f"\n==> {description}")
@@ -30,14 +32,15 @@ def run_command(cmd, description):
         print(f"✗ Error during {description}: {e}")
         sys.exit(1)
 
+
 def install_packages(install_later=False):
     config_path = os.path.join(os.environ["HOME"], "architect/packages.json")
     package_data = load_package_data(config_path)
-    
+
     official_packages = package_data["packages"]
     aur_packages = package_data["aur-packages"]
     later_packages = package_data.get("later-packages", [])
-    
+
     if install_later:
         if later_packages:
             run_command(
@@ -51,13 +54,13 @@ def install_packages(install_later=False):
         if all_official:
             run_command(
                 ["sudo", "pacman", "-S", "--needed"] + all_official,
-                "Installing official packages"
+                "Installing official packages",
             )
         if aur_packages:
             run_command(
-                ["paru", "-S", "--needed"] + aur_packages, 
-                "Installing AUR packages"
+                ["paru", "-S", "--needed"] + aur_packages, "Installing AUR packages"
             )
+
 
 if __name__ == "__main__":
     install_later = "--later" in sys.argv

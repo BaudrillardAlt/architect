@@ -42,9 +42,8 @@ SERVICES = [
     Service(name="foot-server.socket", type=ServiceType.USER, pkg="foot"),
     Service(name="gnome-keyring-daemon", type=ServiceType.USER, pkg="gnome-keyring"),
     Service(name="mako", type=ServiceType.USER, pkg="mako"),
-    Service(name="hyprpolkitagent", type=ServiceType.USER, pkg="hyprpolkitagent"),  # or polkit-kde-agent if preferred
+    Service(name="hyprpolkitagent", type=ServiceType.USER, pkg="hyprpolkitagent"),
 ]
-
 
 
 def print_msg(message: str, status: str = "", error: bool = False) -> None:
@@ -235,7 +234,6 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
 
-    # Filter services if specific ones were requested
     if args.services:
         services = [svc for svc in SERVICES if svc.name in args.services]
         if not services:
@@ -247,7 +245,6 @@ def main() -> int:
     else:
         services = SERVICES
 
-    # Print summary of services to be managed
     print_msg(
         f"Managing {len(services)} services: {', '.join(s.name for s in services)}"
     )

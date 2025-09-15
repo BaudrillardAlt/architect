@@ -8,8 +8,14 @@ import subprocess
 
 
 def find_profile(mount_path):
-    dirs = [d for d in os.listdir(mount_path) if os.path.isdir(os.path.join(mount_path, d))]
-    candidates = [d for d in dirs if re.match(r"^[a-z0-9]+\.(default(-release|-nightly)?|hey)$", d)]
+    dirs = [
+        d for d in os.listdir(mount_path) if os.path.isdir(os.path.join(mount_path, d))
+    ]
+    candidates = [
+        d
+        for d in dirs
+        if re.match(r"^[a-z0-9]+\.(default(-release|-nightly)?|hey)$", d)
+    ]
     if not candidates:
         raise FileNotFoundError("no matching Firefox profile folder found on USB")
     candidates.sort(key=lambda d: (not d.endswith(".default-nightly"), d))
@@ -48,7 +54,9 @@ def main():
 
 
 def is_profile_folder(folder_name):
-    return bool(re.match(r"^[a-z0-9]+\.(default(-release|-nightly)?|hey)$", folder_name))
+    return bool(
+        re.match(r"^[a-z0-9]+\.(default(-release|-nightly)?|hey)$", folder_name)
+    )
 
 
 def delete_profile_folders(firefox_dir):
@@ -72,14 +80,27 @@ def copy_profile_folder(source_path, firefox_dir):
     dest_path = os.path.join(firefox_dir, profile_name)
     print(f"Copying profile folder from {source_path} to {dest_path}")
     try:
-        subprocess.run(["which", "rsync"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(
+            ["which", "rsync"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
         print("  Using rsync for copying...")
-        subprocess.run(["rsync", "-a", source_path + "/", dest_path], check=True, stderr=subprocess.PIPE)
+        subprocess.run(
+            ["rsync", "-a", source_path + "/", dest_path],
+            check=True,
+            stderr=subprocess.PIPE,
+        )
     except (subprocess.CalledProcessError, FileNotFoundError):
         print("  Rsync not available, using cp -r instead...")
         try:
             os.makedirs(dest_path, exist_ok=True)
-            subprocess.run(["cp", "-r", source_path + "/.", dest_path], check=True, stderr=subprocess.PIPE)
+            subprocess.run(
+                ["cp", "-r", source_path + "/.", dest_path],
+                check=True,
+                stderr=subprocess.PIPE,
+            )
         except subprocess.CalledProcessError as e:
             print(f"Error copying profile: {e.stderr.decode()}")
             raise
@@ -88,7 +109,9 @@ def copy_profile_folder(source_path, firefox_dir):
 
 def modify_profiles_ini(profiles_ini_path, profile_name):
     if not os.path.exists(profiles_ini_path):
-        print(f"profiles.ini file not found at {profiles_ini_path}. Creating a new one.")
+        print(
+            f"profiles.ini file not found at {profiles_ini_path}. Creating a new one."
+        )
         create_new_profiles_ini(profiles_ini_path, profile_name)
         return
     print(f"Modifying {profiles_ini_path}...")

@@ -4,6 +4,7 @@ target_class="firefox-nightly"
 
 printf 'dispatch focuswindow class:firefox-nightly\n' |
   socat - UNIX-CONNECT:"/run/user/$(id -u)/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket.sock"
+
 sleep 0.1
 
 if [[ -z "$msg" ]]; then

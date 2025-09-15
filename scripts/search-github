@@ -22,5 +22,5 @@ done
 
 url="https://github.com/search?q=$(printf '%s' "$query" | sed 's/ /+/g')$lang&type=$mode"
 firefox-nightly --new-tab "$url"
-# nirius focus -a firefox
-nirius focus -a firefox-nightly
+hyprctl dispatch focuswindow class:firefox-nightly
+# nirius focus -a firefox-nightly

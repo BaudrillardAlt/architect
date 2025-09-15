@@ -38,7 +38,6 @@ main() {
   sudo udevadm control --reload
   sudo udevadm trigger
 
-  bat cache --build
   if pacman -Qq linux-firmware >/dev/null 2>&1; then
     sudo pacman -Rns linux-zen linux-firmware --noconfirm
   fi

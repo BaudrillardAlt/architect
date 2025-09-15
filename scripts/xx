@@ -40,15 +40,7 @@ set --
 [ -n "$ext" ] && set -- "$@" --extension "$ext"
 
 file=$(
-  fd . "$dir" --type f "$@" |
-    awk -F/ '{print $NF "\t" $0}' |
-    sk \
-      --delimiter '\t' \
-      --with-nth=2 \
-      --nth=1,2 \
-      --tiebreak=begin,length \
-      --preview 'bat --color=always --style=numbers {2}' |
-    cut -f2
+  fd . "$dir" --type f "$@" | fzf
 )
 [ -n "$file" ] && {
   nv "$file"
