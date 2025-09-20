@@ -37,6 +37,7 @@ SERVICES = [
     # Service(name="tlp", type=ServiceType.SYSTEM, pkg="tlp"),
     Service(name="thermald", type=ServiceType.SYSTEM, pkg="thermald"),
     Service(name="keyd", type=ServiceType.SYSTEM, pkg="keyd"),
+    Service(name="greetd", type=ServiceType.SYSTEM, pkg="greetd"),
     Service(name="scx", type=ServiceType.SYSTEM, pkg="scx-scheds-git"),
     Service(name="psd", type=ServiceType.USER, pkg="profile-sync-daemon"),
     Service(name="foot-server.socket", type=ServiceType.USER, pkg="foot"),
