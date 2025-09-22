@@ -19,7 +19,6 @@ main() {
 
   sudo pacman -S paru-bin rustup fish-git chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
   chsh -s /usr/bin/fish
-  rustup default nightly
 
   sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config/etc/ /etc/
   chezmoi init --apply --ssh git@github.com:BaudrillardAlt/dotfiles.git
@@ -39,7 +38,7 @@ main() {
   sudo udevadm trigger
 
   if pacman -Qq linux-firmware >/dev/null 2>&1; then
-    sudo pacman -Rns linux-zen linux-firmware --noconfirm
+    sudo pacman -Rns linux-firmware --noconfirm
   fi
   sudo pacman -S linux-firmware-intel linux-firmware-whence python rsync --noconfirm --needed
   sudo pacman -Sc --noconfirm
