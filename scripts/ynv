@@ -8,6 +8,6 @@ yazi "$@" --chooser-file="$tmp"
 
 if [[ -s "$tmp" ]]; then
   while IFS= read -r file; do
-    nv "$file"
+    nvim --server /tmp/nv --remote "$file"
   done <"$tmp"
 fi

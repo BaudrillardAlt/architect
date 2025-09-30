@@ -1,8 +1,0 @@
-tcp_bbr
-kvm-intel
-tun
-cpufreq_performance
-loop
-atkbd
-ctr
-msr
