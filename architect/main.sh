@@ -17,7 +17,7 @@ main() {
   sudo pacman -Scc --noconfirm
   sudo pacman -Syyu --noconfirm
 
-  sudo pacman -S paru-bin rustup fish-git chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
+  sudo pacman -S paru-bin chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
   chsh -s /usr/bin/fish
 
   sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config/etc/ /etc/
