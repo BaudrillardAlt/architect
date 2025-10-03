@@ -1,0 +1,9 @@
+# /etc/udev/rules.d/10-lauterbach_target_x64.rules
+
+ACTION!="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",ATTR{idVendor}=="8087", ATTR{idProduct}=="0a6e", MODE:="0666"
+ACTION!="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",ATTR{idVendor}=="8087", ATTR{idProduct}=="0a6f", MODE:="0666"
+ACTION!="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",ATTR{idVendor}=="8087", ATTR{idProduct}=="0a70", MODE:="0666"
+ACTION!="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",ATTR{idVendor}=="8087", ATTR{idProduct}=="0a71", MODE:="0666"
+ACTION!="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",ATTR{idVendor}=="8087", ATTR{idProduct}=="0a73", MODE:="0666"
+ACTION!="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",ATTR{idVendor}=="8087", ATTR{idProduct}=="0a75", MODE:="0666"
+ACTION!="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",ATTR{idVendor}=="8087", ATTR{idProduct}=="0a78", MODE:="0666"
