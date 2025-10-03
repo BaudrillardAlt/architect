@@ -2,8 +2,6 @@
 set -e
 main() {
 
-  sudo pacman -S python rsync --noconfirm --needed
-
   sudo pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
   sudo pacman-key --lsign-key F3B607488DB35A47
 
@@ -12,14 +10,12 @@ main() {
     'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-v4-mirrorlist-22-1-any.pkg.tar.zst' \
     'https://mirror.cachyos.org/repo/x86_64/cachyos/pacman-7.0.0.r7.g1f38429-1-x86_64.pkg.tar.zst'
 
-  sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config/etc/ /etc/
+  bash ~/architect/architect/sync-etc.sh
   sudo pacman -Scc --noconfirm
   sudo pacman -Syyu --noconfirm
 
-  sudo pacman -S paru-bin chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
-  chsh -s /usr/bin/fish
+  sudo pacman -S paru-bin python chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
 
-  sudo rsync -rvh --no-perms --no-owner --no-group ~/architect/config/etc/ /etc/
   chezmoi init --apply --ssh git@github.com:BaudrillardAlt/dotfiles.git
 
   python ~/architect/architect/install_packages.py
@@ -36,9 +32,9 @@ main() {
   sudo udevadm control --reload
   sudo udevadm trigger
 
-  sudo pacman -S python rsync --noconfirm --needed
   sudo pacman -Sc --noconfirm
   paru -Sc --noconfirm
+  chsh -s /usr/bin/fish
   sudo journalctl --vacuum-size=1M
   orphans=$(pacman -Qtdq)
   [[ -n "$orphans" ]] && sudo pacman -Rns $orphans

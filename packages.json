@@ -53,6 +53,8 @@
     "openssh",
     "pavucontrol",
     "polkit",
+    "zellij",
+    "wbg",
     "procs",
     "profile-sync-daemon",
     "python-capstone",
@@ -99,6 +101,9 @@
     "zip",
     "neovide",
     "zoxide",
+    "rustup",
+    "polkit-kde-agent",
+    "usbutils",
     "niri"
   ],
   "aur-packages": [
