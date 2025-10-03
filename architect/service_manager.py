@@ -42,7 +42,6 @@ SERVICES = [
     Service(name="foot-server.socket", type=ServiceType.USER, pkg="foot"),
     Service(name="gnome-keyring-daemon", type=ServiceType.USER, pkg="gnome-keyring"),
     Service(name="mako", type=ServiceType.USER, pkg="mako"),
-    Service(name="hyprpolkitagent", type=ServiceType.USER, pkg="hyprpolkitagent"),
 ]
 
 

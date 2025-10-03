@@ -8,7 +8,7 @@ end
 
 if not test -S "$NVIM_LISTEN_ADDRESS"
     if pgrep -x neovide >/dev/null
-        hyprctl dispatch focuswindow class:neovide
+        nirius focus -a neovide
         exit
     end
     if test (count $argv) -eq 1; and test -d "$argv[1]"
@@ -16,10 +16,6 @@ if not test -S "$NVIM_LISTEN_ADDRESS"
         xx "$abs"
     else
         command app2unit /usr/share/applications/neovide.desktop -- --listen "$NVIM_LISTEN_ADDRESS" $argv
-        while not hyprctl clients | grep -q 'class: neovide'
-            sleep 0.1
-        end
-        hyprctl dispatch layoutmsg swapwithmaster
     end
     exit
 end
@@ -35,6 +31,6 @@ for f in $argv
         xx "$abs"
     else
         nvim --server $NVIM_LISTEN_ADDRESS --remote $abs
-        hyprctl dispatch focuswindow class:neovide
+        nirius focus -a neovide
     end
 end

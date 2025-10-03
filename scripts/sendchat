@@ -2,8 +2,7 @@
 msg="$*"
 target_class="zen-browser"
 
-printf 'dispatch focuswindow class:zen\n' |
-  socat - UNIX-CONNECT:"/run/user/$(id -u)/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket.sock"
+nirius focus -a zen
 
 sleep 0.1
 

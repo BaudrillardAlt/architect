@@ -22,4 +22,4 @@ done
 
 url="https://github.com/search?q=$(printf '%s' "$query" | sed 's/ /+/g')$lang&type=$mode"
 zen-browser --new-tab "$url"
-hyprctl dispatch focuswindow class:zen
+nirius focus -a zen

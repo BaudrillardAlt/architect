@@ -99,10 +99,7 @@
     "zip",
     "neovide",
     "zoxide",
-    "hyprpolkitagent",
-    "xdg-desktop-portal-hyprland",
-    "hyprland",
-    "hyprpaper"
+    "niri"
   ],
   "aur-packages": [
     "bibata-cursor-theme",
