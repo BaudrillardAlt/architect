@@ -103,7 +103,8 @@
     "rustup",
     "polkit-kde-agent",
     "usbutils",
-    "niri"
+    "niri",
+    "rewrite"
   ],
   "aur-packages": [
     "bibata-cursor-theme",
@@ -120,4 +121,3 @@
     "ov-bin",
     "scooter-bin"
   ]
-}

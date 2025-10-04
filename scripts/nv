@@ -8,11 +8,12 @@ end
 
 if not test -S "$NVIM_LISTEN_ADDRESS"
     if pgrep -x neovide >/dev/null
-        nirius focus -a neovide
+        nirius focus -a neovide 2>/dev/null
+        or echo "Failed to focus neovide" >&2
         exit
     end
     if test (count $argv) -eq 1; and test -d "$argv[1]"
-        set abs (realpath -- $argv[1])
+        set abs (realpath -m -- $argv[1])
         xx "$abs"
     else
         command app2unit /usr/share/applications/neovide.desktop -- --listen "$NVIM_LISTEN_ADDRESS" $argv
@@ -26,11 +27,17 @@ if test (count $argv) -eq 0
 end
 
 for f in $argv
-    set abs (realpath -- $f)
+    if test -e "$f"
+        set abs (realpath -- $f)
+    else
+        set abs (realpath -m -- $f)
+    end
+
     if test -d "$abs"
         xx "$abs"
     else
         nvim --server $NVIM_LISTEN_ADDRESS --remote $abs
-        nirius focus -a neovide
+        nirius focus -a neovide 2>/dev/null
+        or echo "Failed to focus neovide" >&2
     end
 end

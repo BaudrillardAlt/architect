@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+jq -r '
+  paths(type == "string") as $p 
+  | getpath($p) as $url
+  | "\($p | join(".")): \($url | sub("^https?://"; "") | sub("^www\\."; ""))"
+' ~/notes/links.json |
+  fuzzel --dmenu --width 100 --prompt 'Open Bookmark: ' |
+  cut -d: -f2- |
+  sed 's|^|https://|' |
+  xargs -r zen-browser --new-tab
