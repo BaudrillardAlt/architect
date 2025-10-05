@@ -33,6 +33,7 @@
     "gst-libav",
     "inter-font",
     "iproute2",
+    "chromium",
     "just",
     "just-lsp",
     "keyd",

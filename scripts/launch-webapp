@@ -1,0 +1,14 @@
+#!/bin/bash
+
+url="$1"
+profile="${2:-default}"
+
+app2unit -- /usr/bin/chromium \
+  --app="$url" \
+  --user-data-dir="$HOME/.local/share/webapps/$profile" \
+  --class="webapp-$profile" \
+  --no-first-run \
+  --no-default-browser-check \
+  --disable-features=MediaRouter \
+  --enable-features=UseOzonePlatform,VaapiVideoDecodeLinuxGL,VaapiVideoEncoder \
+  --enable-zero-copy
