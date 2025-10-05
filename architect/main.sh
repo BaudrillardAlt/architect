@@ -35,6 +35,8 @@ main() {
   sudo pacman -Sc --noconfirm
   paru -Sc --noconfirm
   chsh -s /usr/bin/fish
+  rustup default nightly
+  cargo install nirius
   sudo journalctl --vacuum-size=1M
   orphans=$(pacman -Qtdq)
   [[ -n "$orphans" ]] && sudo pacman -Rns $orphans

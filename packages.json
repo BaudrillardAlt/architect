@@ -24,7 +24,6 @@
     "dust",
     "eza",
     "fd",
-    "zen-browser-bin",
     "fish",
     "fzf",
     "gdb",
@@ -104,6 +103,7 @@
     "niri"
   ],
   "aur-packages": [
+    "zen-browser-bin",
     "bibata-cursor-theme",
     "profile-sync-daemon-zen",
     "wbg",
