@@ -42,6 +42,7 @@
     "llvm",
     "lua-language-server",
     "mako",
+    "nwg-look",
     "marksman",
     "mesa-git",
     "mesa-utils",
