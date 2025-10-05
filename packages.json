@@ -63,7 +63,7 @@
     "ripgrep",
     "ruff",
     "sccache",
-    "scx-scheds-git",
+    "scx-scheds",
     "shfmt",
     "starship",
     "stylua",
