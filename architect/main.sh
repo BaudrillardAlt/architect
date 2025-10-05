@@ -14,7 +14,7 @@ main() {
   sudo pacman -Scc --noconfirm
   sudo pacman -Syyu --noconfirm
 
-  sudo pacman -S paru-bin python chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
+  sudo pacman -S paru-bin git rsync python chezmoi sccache ccache libc++ clang dosfstools e2fsprogs mold --noconfirm --needed
 
   chezmoi init --apply --ssh git@github.com:BaudrillardAlt/dotfiles.git
 
