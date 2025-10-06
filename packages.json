@@ -43,7 +43,6 @@
     "llvm",
     "lua-language-server",
     "mako",
-    "nwg-look",
     "marksman",
     "mesa-git",
     "mesa-utils",
@@ -86,6 +85,8 @@
     "wl-clipboard",
     "wtype",
     "xdg-desktop-portal-gtk",
+    "xdg-desktop-portal-gnome",
+    "vesktop",
     "xdg-user-dirs",
     "xdg-utils",
     "yazi",
@@ -102,6 +103,7 @@
     "rustup",
     "polkit-kde-agent",
     "usbutils",
+    "openvpn",
     "niri"
   ],
   "aur-packages": [

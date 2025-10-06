@@ -20,9 +20,6 @@ main() {
 
   python ~/architect/architect/install_packages.py
 
-  sudo dosfslabel /dev/nvme0n1p1 BOOT
-  sudo e2label /dev/nvme0n1p2 ROOT
-
   sudo mount -a
 
   sudo usermod -aG video,audio,network,git,wheel,input wasd
@@ -35,8 +32,7 @@ main() {
   sudo pacman -Sc --noconfirm
   paru -Sc --noconfirm
   chsh -s /usr/bin/fish
-  rustup default nightly
-  cargo install nirius
+
   sudo journalctl --vacuum-size=1M
   orphans=$(pacman -Qtdq)
   [[ -n "$orphans" ]] && sudo pacman -Rns $orphans
