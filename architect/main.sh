@@ -33,7 +33,7 @@ main() {
   paru -Sc --noconfirm
   chsh -s /usr/bin/fish
 
-  sudo journalctl --vacuum-size=1M
+  sudo journalctl --vacuum-time 1s
   orphans=$(pacman -Qtdq)
   [[ -n "$orphans" ]] && sudo pacman -Rns $orphans
 }
