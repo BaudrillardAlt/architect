@@ -1,14 +1,19 @@
 #!/bin/bash
 
-url="$1"
-profile="${2:-default}"
+webapps=(
+  "ChatGPT|https://chatgpt.com|chrome-chatgpt|chatgpt"
+  "Claude|https://claude.ai|chrome-claude|claude"
+  "Calendar|https://calendar.google.com|chrome-calendar.google|google"
+  "Docs|https://docs.google.com|chrome-docs.google|google"
+  "twitch|https://www.twitch.tv|chrome-.twitch|twitch"
+)
 
-app2unit -- /usr/bin/chromium \
-  --app="$url" \
-  --user-data-dir="$HOME/.local/share/webapps/$profile" \
-  --class="webapp-$profile" \
-  --no-first-run \
-  --no-default-browser-check \
-  --disable-features=MediaRouter \
-  --enable-features=UseOzonePlatform,VaapiVideoDecodeLinuxGL,VaapiVideoEncoder \
-  --enable-zero-copy
+choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu)
+
+for app in "${webapps[@]}"; do
+  IFS='|' read -r name url app_id profile <<<"$app"
+  if [[ "$name" == "$choice" ]]; then
+    nirius focus-or-spawn -a "$app_id" create-webapp "$url" "$profile"
+    break
+  fi
+done
