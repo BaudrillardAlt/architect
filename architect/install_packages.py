@@ -14,7 +14,7 @@ def load_package_data(config_path):
     except json.JSONDecodeError:
         sys.exit(f"Error: Configuration file '{config_path}' contains invalid JSON.")
 
-    required_keys = ["packages", "aur-packages"]
+    required_keys = ["pkgs", "aur-pkgs"]
     missing_keys = [key for key in required_keys if key not in package_data]
     if missing_keys:
         sys.exit(
@@ -37,14 +37,14 @@ def install_packages(install_later=False):
     config_path = os.path.join(os.environ["HOME"], "architect/packages.json")
     package_data = load_package_data(config_path)
 
-    official_packages = package_data["packages"]
-    aur_packages = package_data["aur-packages"]
-    later_packages = package_data.get("later-packages", [])
+    official_packages = package_data["pkgs"]
+    aur_packages = package_data["aur-pkgs"]
+    later_pkgs = package_data.get("later-pkgs", [])
 
     if install_later:
-        if later_packages:
+        if later_pkgs:
             run_command(
-                ["paru", "-S", "--needed"] + later_packages,
+                ["paru", "-S", "--needed"] + later_pkgs,
                 "Installing later packages with paru",
             )
         else:

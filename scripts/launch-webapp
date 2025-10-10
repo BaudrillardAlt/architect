@@ -1,19 +1,18 @@
 #!/bin/bash
 
 webapps=(
-  "ChatGPT|https://chatgpt.com|chrome-chatgpt|chatgpt"
-  "Claude|https://claude.ai|chrome-claude|claude"
-  "Calendar|https://calendar.google.com|chrome-calendar.google|google"
-  "Docs|https://docs.google.com|chrome-docs.google|google"
-  "twitch|https://www.twitch.tv|chrome-.twitch|twitch"
+  "ChatGPT|https://chatgpt.com|chrome-chatgpt.com__-Default|chatgpt"
+  "Claude|https://claude.ai|chrome-claude.ai__-Default|claude"
+  "Calendar|https://calendar.google.com|chrome-calendar.google.com__-Default|google"
+  "Docs|https://docs.google.com|chrome-docs.google.com__-Default|google"
+  "Twitch|https://www.twitch.tv|chrome-www.twitch.tv__-Default|twitch"
 )
 
-choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu)
+choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu) || exit 1
 
-for app in "${webapps[@]}"; do
-  IFS='|' read -r name url app_id profile <<<"$app"
-  if [[ "$name" == "$choice" ]]; then
-    nirius focus-or-spawn -a "$app_id" create-webapp "$url" "$profile"
-    break
-  fi
-done
+[[ -z "$choice" ]] && exit 0
+
+entry=$(printf "%s\n" "${webapps[@]}" | grep "^$choice|") || exit 1
+IFS='|' read -r _ url app_id profile <<<"$entry"
+
+nirius focus-or-spawn -a "$app_id" create-webapp "$url" "$profile"

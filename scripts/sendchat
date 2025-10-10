@@ -2,7 +2,7 @@
 msg="$*"
 target_class="zen-browser"
 
-nirius focus -a zen
+nirius focus -a chrome-chatgpt.com__-Default
 
 sleep 0.1
 
@@ -13,6 +13,8 @@ fi
 wtype -M alt 1 -m alt
 sleep 0.05
 wtype i
+wtype -k backspace
+
 sleep 0.05
 
 printf '%s' "$msg" | wl-copy
