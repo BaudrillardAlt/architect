@@ -1,6 +1,8 @@
+firefox https://accounts.firefox.com
+firefox gmail.com
+firefox https://account.proton.me/mail
 bat cache --build
 ya pkg install
-
 python ~/architect/architect/install_packages.py --later
 NVIM_LISTEN_ADDRESS= paru -S neovim-git
 nvim --headless "+Lazy! sync" +qa
