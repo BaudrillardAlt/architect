@@ -65,7 +65,7 @@
     "rustup",
     "satty",
     "sccache",
-    "scx-scheds",
+    "scx-scheds-git",
     "shfmt",
     "slurp",
     "socat",

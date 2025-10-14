@@ -37,7 +37,6 @@ SERVICES = [
     # Service(name="tlp", type=ServiceType.SYSTEM, pkg="tlp"),
     Service(name="keyd", type=ServiceType.SYSTEM, pkg="keyd"),
     Service(name="greetd", type=ServiceType.SYSTEM, pkg="greetd"),
-    Service(name="scx", type=ServiceType.SYSTEM, pkg="scx-scheds"),
     Service(name="psd", type=ServiceType.USER, pkg="profile-sync-daemon"),
     Service(name="foot-server.socket", type=ServiceType.USER, pkg="foot"),
     Service(name="gnome-keyring-daemon", type=ServiceType.USER, pkg="gnome-keyring"),

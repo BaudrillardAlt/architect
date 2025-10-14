@@ -15,4 +15,5 @@ choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu) || exit
 entry=$(printf "%s\n" "${webapps[@]}" | grep "^$choice|") || exit 1
 IFS='|' read -r _ url app_id profile <<<"$entry"
 
-nirius focus-or-spawn -a "$app_id" create-webapp "$url" "$profile"
+# nirius focus-or-spawn -a "$app_id" create-webapp "$url" "$profile"
+create-webapp "$url" "$profile"

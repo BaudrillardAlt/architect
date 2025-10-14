@@ -1,4 +1,4 @@
-firefox https://accounts.firefox.com
+firefox accounts.firefox.com
 firefox gmail.com
 firefox https://account.proton.me/mail
 bat cache --build
