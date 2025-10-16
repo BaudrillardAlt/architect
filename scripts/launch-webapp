@@ -1,19 +1,17 @@
 #!/bin/bash
 
 webapps=(
-  "ChatGPT|https://chatgpt.com|chrome-chatgpt.com__-Default|chatgpt"
-  "Claude|https://claude.ai|chrome-claude.ai__-Default|claude"
-  "Calendar|https://calendar.google.com|chrome-calendar.google.com__-Default|google"
-  "Docs|https://docs.google.com|chrome-docs.google.com__-Default|google"
-  "Twitch|https://www.twitch.tv|chrome-www.twitch.tv__-Default|twitch"
+  "ChatGPT|https://chatgpt.com|chatgpt"
+  "Claude|https://claude.ai|claude"
+  "Calendar|https://calendar.google.com|google"
+  "Docs|https://docs.google.com|google"
+  "Twitch|https://www.twitch.tv|twitch"
 )
 
 choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu) || exit 1
-
 [[ -z "$choice" ]] && exit 0
 
 entry=$(printf "%s\n" "${webapps[@]}" | grep "^$choice|") || exit 1
-IFS='|' read -r _ url app_id profile <<<"$entry"
+IFS='|' read -r _ url profile <<<"$entry"
 
-# nirius focus-or-spawn -a "$app_id" create-webapp "$url" "$profile"
-create-webapp "$url" "$profile"
+nirius focus-or-spawn -a "$profile" create-webapp "$url" "$profile"

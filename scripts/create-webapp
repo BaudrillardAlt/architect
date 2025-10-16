@@ -1,13 +1,11 @@
 #!/bin/bash
-
 url="$1"
-profile="${2:-default}"
+profile="$2"
 
 app2unit -- /usr/bin/chromium \
   --app="$url" \
   --user-data-dir="$HOME/.local/share/webapps/$profile" \
   --disk-cache-dir="$XDG_RUNTIME_DIR/chromium-cache" \
-  --class="webapp-$profile" \
   --no-first-run \
   --no-default-browser-check \
   --disable-features=MediaRouter
