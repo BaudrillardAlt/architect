@@ -1,11 +1,10 @@
 #!/bin/bash
 
 webapps=(
-  "ChatGPT|https://chatgpt.com|chatgpt"
-  "Claude|https://claude.ai|claude"
+  "ChatGPT|https://chatgpt.com|chrome-chatgpt.com__-Default"
+  "Claude|https://claude.ai|chrome-claude.ai__-Default"
   "Calendar|https://calendar.google.com|google"
   "Docs|https://docs.google.com|google"
-  "Twitch|https://www.twitch.tv|twitch"
 )
 
 choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu) || exit 1
@@ -14,4 +13,6 @@ choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu) || exit
 entry=$(printf "%s\n" "${webapps[@]}" | grep "^$choice|") || exit 1
 IFS='|' read -r _ url profile <<<"$entry"
 
-nirius focus-or-spawn -a "$profile" create-webapp "$url" "$profile"
+# nirius focus-or-spawn -a "$profile" create-webapp "$url" "$profile"
+
+~/.config/hypr/scripts/focus-or-exec "$profile" create-webapp "$url" "$profile"
