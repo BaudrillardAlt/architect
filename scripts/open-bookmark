@@ -8,4 +8,5 @@ jq -r '
   fuzzel --dmenu --width 100 --prompt 'Open Bookmark: ' |
   cut -d: -f2- |
   sed 's|^|https://|' |
-  xargs -r zen-browser --new-tab
+  xargs -r firefox-developer-edition --new-tab
+nirius focus -a firefox-developer-edition

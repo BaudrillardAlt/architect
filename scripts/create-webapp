@@ -8,4 +8,5 @@ app2unit -- /usr/bin/chromium \
   --disk-cache-dir="$XDG_RUNTIME_DIR/chromium-cache" \
   --no-first-run \
   --no-default-browser-check \
-  --disable-features=MediaRouter
+  --disable-features=MediaRouter \
+  --force-device-scale-factor=0.8

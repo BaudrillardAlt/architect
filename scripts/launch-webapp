@@ -13,6 +13,6 @@ choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu) || exit
 entry=$(printf "%s\n" "${webapps[@]}" | grep "^$choice|") || exit 1
 IFS='|' read -r _ url profile <<<"$entry"
 
-# nirius focus-or-spawn -a "$profile" create-webapp "$url" "$profile"
+nirius focus-or-spawn -a "$profile" create-webapp "$url" "$profile"
 
-~/.config/hypr/scripts/focus-or-exec "$profile" create-webapp "$url" "$profile"
+# ~/.config/hypr/scripts/focus-or-exec "$profile" create-webapp "$url" "$profile"
