@@ -1,0 +1,7 @@
+#!/bin/sh
+class="$1"
+shift
+hyprctl dispatch focuswindow "class:$class"
+if ! hyprctl -j activewindow | jq -e --arg c "$class" '.class | test($c)' >/dev/null; then
+  "$@" &
+fi
