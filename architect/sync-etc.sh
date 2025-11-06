@@ -43,6 +43,7 @@ sync_file "modprobe.d/ubuntu.conf" 0644
 
 sync_file "sysctl.d/99-custom.conf" 0644
 
+sync_file "firefox/policies/policies.json" 0644
 sync_file "systemd/journald.conf.d/00-journal-size.conf" 0644
 sync_file "systemd/system/pci-latency.service" 0644
 sync_file "systemd/system/rtkit-daemon.service.d/override.conf" 0644

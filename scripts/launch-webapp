@@ -5,6 +5,7 @@ webapps=(
   "Claude|https://claude.ai|chrome-claude.ai__-Default"
   "Calendar|https://calendar.google.com|google"
   "Docs|https://docs.google.com|google"
+  "Chess|https://www.chess.com|google"
 )
 
 choice=$(printf "%s\n" "${webapps[@]}" | cut -d'|' -f1 | fuzzel --dmenu) || exit 1
