@@ -22,7 +22,7 @@ sync_file() {
 
 [[ $EUID -ne 0 ]] && exec sudo "$(realpath "$0")" "$@"
 
-sync_file "fstab" 0644
+# sync_file "fstab" 0644
 sync_file "makepkg.conf" 0644
 sync_file "makepkg.conf.d/rust.conf" 0644
 sync_file "pacman.conf" 0644
@@ -64,6 +64,7 @@ sync_file "udev/rules.d/60-ioschedulers.rules" 0644
 sync_file "udev/rules.d/66-pico.rules" 0644
 sync_file "udev/rules.d/69-probe-rs.rules" 0644
 sync_file "udev/rules.d/99-cpu-dma-latency.rules" 0644
+sync_file "udev/rules.d/96-quartus.rules" 0644
 
 if [[ ${#CHANGED[@]} -eq 0 ]]; then
   echo "No changes"

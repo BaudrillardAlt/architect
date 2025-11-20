@@ -2,6 +2,15 @@
 set -e
 main() {
 
+  sudo pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
+  sudo pacman-key --lsign-key F3B607488DB35A47
+
+  sudo pacman -U 'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-keyring-20240331-1-any.pkg.tar.zst' \
+    'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-mirrorlist-22-1-any.pkg.tar.zst' \
+    'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-v3-mirrorlist-22-1-any.pkg.tar.zst' \
+    'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-v4-mirrorlist-22-1-any.pkg.tar.zst' \
+    'https://mirror.cachyos.org/repo/x86_64/cachyos/pacman-7.0.0.r7.g1f38429-2-x86_64.pkg.tar.zst'
+
   bash ~/architect/architect/sync-etc.sh
   sudo pacman -Scc --noconfirm
   sudo pacman -Syyu --noconfirm
@@ -17,7 +26,7 @@ main() {
 
   sudo usermod -aG video,audio,network,git,wheel,input wasd
   python ~/architect/architect/service_manager.py --enable
-  sudo cp ./config/limine.conf /boot
+  # sudo cp ./config/limine.conf /boot
 
   sudo udevadm control --reload
   sudo udevadm trigger
