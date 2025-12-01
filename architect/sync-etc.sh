@@ -22,7 +22,7 @@ sync_file() {
 
 [[ $EUID -ne 0 ]] && exec sudo "$(realpath "$0")" "$@"
 
-# sync_file "fstab" 0644
+sync_file "fstab" 0644
 sync_file "makepkg.conf" 0644
 sync_file "makepkg.conf.d/rust.conf" 0644
 sync_file "pacman.conf" 0644
@@ -59,6 +59,7 @@ sync_file "tmpfiles.d/thp-shrinker.conf" 0644
 sync_file "tmpfiles.d/thp.conf" 0644
 
 sync_file "udev/rules.d/40-hpet-permissions.rules" 0644
+sync_file "udev/rules.d/50-qmk.rules" 0644
 sync_file "udev/rules.d/50-sata.rules" 0644
 sync_file "udev/rules.d/60-ioschedulers.rules" 0644
 sync_file "udev/rules.d/66-pico.rules" 0644

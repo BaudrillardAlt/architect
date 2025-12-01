@@ -9,3 +9,6 @@ nvim --headless "+Lazy! sync" +qa
 sudo pacman -Rns linux-firmware linux-zen
 sudo pacman -S linux-firmware-amdgpu linux-firmware-radeon linux-firmware-whence linux-firmware-realtek linux-firmware-other linux-firmware-mediatek --needed
 dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
+
+orphans=$(pacman -Qtdq)
+[[ -n "$orphans" ]] && sudo pacman -Rns $orphans --noconfirm
