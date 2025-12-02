@@ -46,9 +46,9 @@
     "neovide",
     "niri",
     "noto-fonts-emoji",
+    "nwg-look",
     "obsidian",
     "openssh",
-    "openvpn",
     "pavucontrol",
     "polkit",
     "polkit-kde-agent",
@@ -99,7 +99,6 @@
     "yazi",
     "zathura",
     "zathura-pdf-mupdf",
-    "zellij",
     "zip",
     "zoxide"
   ],
