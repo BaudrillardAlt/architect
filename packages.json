@@ -23,6 +23,7 @@
     "gdb",
     "glow",
     "gnome-keyring",
+    "ghostty",
     "greetd",
     "gst-libav",
     "hexyl",
@@ -105,7 +106,6 @@
   "aur-pkgs": [
     "bibata-cursor-theme",
     "nirius",
-    "tio",
     "wbg",
     "foot-git",
     "fuzzel-git",
@@ -115,6 +115,7 @@
   "later-pkgs": [
     "fish-lsp",
     "numbat-bin",
+    "tio",
     "kdlfmt",
     "ov-bin",
     "scooter-bin"
