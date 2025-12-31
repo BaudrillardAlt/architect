@@ -25,7 +25,7 @@ sync_file() {
 sync_file "fstab" 0644
 sync_file "makepkg.conf" 0644
 sync_file "makepkg.conf.d/rust.conf" 0644
-# sync_file "pacman.conf" 0644
+sync_file "pacman.conf" 0644
 sync_file "tlp.conf" 0644
 
 sync_file "greetd/config.toml" 0644

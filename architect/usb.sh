@@ -7,7 +7,6 @@ USB="/dev/disk/by-label/linux-usb"
 SSH_SOURCE="$MOUNT_POINT/.ssh"
 SSH_DEST="$HOME/.ssh"
 
-# mount USB
 sudo mkdir -p "$MOUNT_POINT"
 if [ -e "$USB" ]; then
   if ! mount | grep -q "$USB"; then
@@ -28,7 +27,6 @@ if [ -d "$SSH_SOURCE" ]; then
   chmod 600 "$SSH_DEST/config" "$SSH_DEST/known_hosts.old"
 fi
 
-# misc files
 MISC_DEST="$HOME/misc"
 mkdir -p "$MISC_DEST"
 
