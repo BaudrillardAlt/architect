@@ -26,7 +26,7 @@ main() {
 
   sudo usermod -aG video,audio,network,git,wheel,input wasd
   python ~/architect/architect/service_manager.py --enable
-  sudo cp ./config/limine.conf /boot/EFI/arch-limine/limine.conf
+  sudo cp ./config/limine.conf /boot/limine/limine.conf
 
   sudo udevadm control --reload
   sudo udevadm trigger

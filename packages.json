@@ -109,7 +109,7 @@
     "foot-git",
     "fuzzel-git",
     "xdg-terminal-exec",
-    "app2unit-git"
+    "app2unit"
   ],
   "later-pkgs": [
     "fish-lsp",
