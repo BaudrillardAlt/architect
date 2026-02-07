@@ -31,7 +31,7 @@ sync_file "pacman.conf" 0644
 sync_file "greetd/config.toml" 0644
 sync_file "keyd/default.conf" 0644
 
-sync_file "default/scx" 0644
+sync_file "scx_loader.toml" 0644
 
 sync_file "debuginfod/archlinux.urls" 0644
 sync_file "debuginfod/cachyos.urls" 0644
@@ -44,24 +44,22 @@ sync_file "modprobe.d/ubuntu.conf" 0644
 sync_file "sysctl.d/99-custom.conf" 0644
 
 sync_file "firefox/policies/policies.json" 0644
- sync_file "systemd/journald.conf.d/00-journal-size.conf" 0644
- sync_file "systemd/system/pci-latency.service" 0644
- sync_file "systemd/system/rtkit-daemon.service.d/override.conf" 0644
- sync_file "systemd/system/user@.service.d/delegate.conf" 0644
- sync_file "systemd/system.conf.d/00-timeout.conf" 0644
- sync_file "systemd/system.conf.d/10-limits.conf" 0644
- sync_file "systemd/timesyncd.conf.d/10-timesyncd.conf" 0644
- sync_file "systemd/user.conf.d/10-limits.conf" 0644
- sync_file "systemd/zram-generator.conf" 0644
+sync_file "systemd/journald.conf.d/00-journal-size.conf" 0644
+sync_file "systemd/system/pci-latency.service" 0644
+sync_file "systemd/system/rtkit-daemon.service.d/override.conf" 0644
+sync_file "systemd/system/user@.service.d/delegate.conf" 0644
+sync_file "systemd/system.conf.d/00-timeout.conf" 0644
+sync_file "systemd/system.conf.d/10-limits.conf" 0644
+sync_file "systemd/timesyncd.conf.d/10-timesyncd.conf" 0644
+sync_file "systemd/user.conf.d/10-limits.conf" 0644
+sync_file "systemd/zram-generator.conf" 0644
 
- sync_file "tmpfiles.d/coredump.conf" 0644
- sync_file "tmpfiles.d/thp-shrinker.conf" 0644
- sync_file "tmpfiles.d/thp.conf" 0644
+sync_file "tmpfiles.d/coredump.conf" 0644
+sync_file "tmpfiles.d/thp-shrinker.conf" 0644
+sync_file "tmpfiles.d/thp.conf" 0644
 
- sync_file "udev/rules.d/40-hpet-permissions.rules" 0644
- sync_file "udev/rules.d/50-qmk.rules" 0644
- sync_file "udev/rules.d/50-sata.rules" 0644
- sync_file "udev/rules.d/60-ioschedulers.rules" 0644
+sync_file "udev/rules.d/40-hpet-permissions.rules" 0644
+sync_file "udev/rules.d/60-ioschedulers.rules" 0644
 sync_file "udev/rules.d/66-pico.rules" 0644
 sync_file "udev/rules.d/69-probe-rs.rules" 0644
 sync_file "udev/rules.d/99-cpu-dma-latency.rules" 0644
