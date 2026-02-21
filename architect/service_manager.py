@@ -36,6 +36,7 @@ class Service:
 SERVICES = [
     # Service(name="tlp", type=ServiceType.SYSTEM, pkg="tlp"),
     Service(name="keyd", type=ServiceType.SYSTEM, pkg="keyd"),
+    Service(name="scx_loader", type=ServiceType.SYSTEM, pkg="scx-scheds"),
     Service(name="greetd", type=ServiceType.SYSTEM, pkg="greetd"),
     Service(name="psd", type=ServiceType.USER, pkg="profile-sync-daemon"),
     Service(name="foot-server.socket", type=ServiceType.USER, pkg="foot"),
