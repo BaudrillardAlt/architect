@@ -2,7 +2,6 @@
 set -e
 main() {
 
-  bash ~/architect/architect/sync-etc.sh
   sudo pacman -Scc --noconfirm
   sudo pacman -Syyu --noconfirm
 

@@ -11,6 +11,5 @@ dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
 mkdir -p ~/.local/share/gnupg
 chmod 700 ~/.local/share/gnupg
 
-scxctl restore
 orphans=$(pacman -Qtdq)
 [[ -n "$orphans" ]] && sudo pacman -Rns $orphans --noconfirm

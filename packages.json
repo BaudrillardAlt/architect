@@ -1,6 +1,5 @@
 {
   "pkgs": [
-    "adw-gtk-theme",
     "arm-none-eabi-gcc",
     "arm-none-eabi-gdb",
     "arm-none-eabi-newlib",
@@ -109,6 +108,7 @@
     "nirius",
     "wbg",
     "xdg-terminal-exec",
+    "dracula-gtk-theme",
     "app2unit"
   ],
   "later-pkgs": [
